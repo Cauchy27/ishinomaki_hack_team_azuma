@@ -59,7 +59,7 @@ const Result: React.FC<CuteResultScreenProps> = ({ score, totalQuestions, messag
               className="bg-pink-500 hover:bg-pink-600 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
               onClick={()=>{goTitle()}}
             >
-              Play Again
+              タイトルへ！
             </Button>
           </div>
         </div>

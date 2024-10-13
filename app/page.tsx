@@ -21,6 +21,7 @@ const Home = () => {
   }
   const goTitle = () => {
     setResultIs(false);
+    setPageTarget("title");
   }
   const changePage = (target:string) => {
     pageTargetList.map((page:string)=>{
