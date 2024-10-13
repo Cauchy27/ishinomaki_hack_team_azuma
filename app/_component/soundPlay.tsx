@@ -3,8 +3,6 @@
   let ctxp = new AudioContext();
   let EffectSource
 
-  let typeOfAudioBuffer:string
-
    // 音源を取得しAudioBuffer形式に変換して返す関数
   async function setupEffect(soundUrl:string) {
     console.log(soundUrl);
