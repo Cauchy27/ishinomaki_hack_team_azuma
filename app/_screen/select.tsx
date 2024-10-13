@@ -31,7 +31,7 @@ const Select = () => {
   };
 
   return (
-    <div className="container mx-auto text-center bg-pink-50 p-6">
+    <div className="mx-auto text-center bg-pink-50 p-6 h-screen">
       {/* プレイヤー名の入力欄 */}
       <div className="mb-4">
         <label className="text-xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
