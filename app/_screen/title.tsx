@@ -1,6 +1,7 @@
 "use client"; // これを一番上に置く
 
 import React from 'react';
+import { Heart } from 'lucide-react';
 // import './app.css'; // 必要なスタイルをインポート
 
 interface CuteResultScreenProps {
