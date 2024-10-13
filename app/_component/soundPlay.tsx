@@ -1,6 +1,6 @@
  "use client"
   
-  let ctxp = new AudioContext();
+  let ctxp = new AudioContext()??"";
   let EffectSource
 
    // 音源を取得しAudioBuffer形式に変換して返す関数
