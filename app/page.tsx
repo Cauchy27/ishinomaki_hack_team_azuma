@@ -1,5 +1,8 @@
 "use client"
 
+import Tittle from "./_screen/title";
+import Select from "./_screen/select";
+import Confirm from "./_screen/confirm";
 import Battle from "./_screen/battle";
 import Result from "./_screen/result";
 import Select from "./_screen/select";
