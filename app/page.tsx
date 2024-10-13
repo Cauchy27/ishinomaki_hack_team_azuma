@@ -9,15 +9,25 @@ import { Button } from "@mui/material";
 
 import { useState, useEffect } from "react";
 
+const pageTargetList = ["title", "select", "battle"];
+
 const Home = () => {
 
   const [resultIs, setResultIs] = useState<boolean>(false);
+  const [pageTarget, setPageTarget] = useState<string>("title");
 
   const goResult = () => {
     setResultIs(true);
   }
   const goTitle = () => {
     setResultIs(false);
+  }
+  const changePage = (target:string) => {
+    pageTargetList.map((page:string)=>{
+      if(target==page){
+        setPageTarget(page);
+      }
+    });
   }
 
   return (
@@ -27,7 +37,10 @@ const Home = () => {
       >
         テスト用：リザルト画面を出す
       </Button>
-      {/* <Battle/> */}
+      {
+        pageTarget=="battle"&&
+        <Battle/>
+      }
 
       {
         resultIs &&
@@ -38,8 +51,16 @@ const Home = () => {
           goTitle={goTitle}
         />
       }
-      {/* <Select/> */}
-      {/* <Tittle/> */}
+      {
+        pageTarget=="select"&&
+        <Select/>
+      }
+      {
+        pageTarget=="title"&&
+        <Tittle
+          changePage={setPageTarget}
+        />
+      }
     </div>
   );
 }
