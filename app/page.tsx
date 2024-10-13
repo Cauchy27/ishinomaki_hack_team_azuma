@@ -5,14 +5,12 @@ import Select from "./_screen/select";
 import Confirm from "./_screen/confirm";
 import Battle from "./_screen/battle";
 import Result from "./_screen/result";
-import Select from "./_screen/select";
-import Tittle from "./_screen/title";
 
 import { Button } from "@mui/material";
 
 import { useState, useEffect } from "react";
 
-const pageTargetList = ["title", "select", "battle"];
+const pageTargetList = ["title", "select", "confirm", "battle"];
 
 const Home = () => {
 
@@ -27,6 +25,11 @@ const Home = () => {
     setResultIs(false);
     setPageTarget("title");
   }
+  const goConfirm = () => {
+    setResultIs(false);
+    setPageTarget("confirm");
+  }
+
   const changePage = (target:string) => {
     pageTargetList.map((page:string)=>{
       if(target==page){
@@ -38,6 +41,11 @@ const Home = () => {
   return (
     <div className="">
       <Button
+        onClick={()=>{goConfirm()}}
+      >
+        テスト用：要素確認画面を出す
+      </Button>
+      <Button
         onClick={()=>{goResult()}}
       >
         テスト用：リザルト画面を出す
@@ -46,7 +54,6 @@ const Home = () => {
         pageTarget=="battle"&&
         <Battle/>
       }
-
       {
         resultIs &&
         <Result
@@ -65,6 +72,10 @@ const Home = () => {
         <Tittle
           changePage={changePage}
         />
+      }
+      {
+        pageTarget=="confirm"&&
+        <Confirm/>
       }
     </div>
   );
