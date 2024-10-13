@@ -8,12 +8,13 @@ const SoundEffect = "/sound/result1.mp3";
 const Bgm = "/sound/result2.mp3";
 
 interface CuteResultScreenProps {
-  score1: number;
-  score2: number;
-  name1: string;
-  name2: string;
-  message: string;
-  goTitle: () => void;
+  score1: number,
+  score2: number,
+  name1: string,
+  name2: string,
+  message: string,
+  goTitle: () => void,
+  // battleId:number,
 }
 
 const Result: React.FC<CuteResultScreenProps> = ({ 
@@ -22,13 +23,14 @@ const Result: React.FC<CuteResultScreenProps> = ({
   name1, 
   name2, 
   message, 
-  goTitle 
+  goTitle ,
+  // battleId
 }) => {
   const winner = score1 > score2 ? name1 : score2 > score1 ? name2 : "引き分け";
 
   let test = true;
   useEffect(()=>{
-    soundPlay(SoundEffect, 0.1);
+    soundPlay(SoundEffect, 0.3);
     soundPlay(Bgm, 0.01);
     console.log("play");
   },[])
