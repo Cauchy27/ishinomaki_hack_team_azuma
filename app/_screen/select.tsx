@@ -34,7 +34,7 @@ const Select = () => {
     <div className="mx-auto text-center bg-pink-50 p-6 h-screen">
       {/* プレイヤー名の入力欄 */}
       <div className="mb-4">
-        <label className="text-xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
+        <label className="text-4xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
           プレイヤー名:　
         </label>
         <input
@@ -55,7 +55,7 @@ const Select = () => {
             key={index}
             src={img}
             alt={`かわいい${index + 1}`}
-            className={`w-36 h-36 cursor-pointer transition-transform ${
+            className={`w-64 h-64 cursor-pointer transition-transform ${
               selectedIndex === index
                 ? "border-4 border-pink-500 scale-110"
                 : "opacity-50"
