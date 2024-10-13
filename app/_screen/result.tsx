@@ -28,7 +28,7 @@ const Result: React.FC<CuteResultScreenProps> = ({
 
   let test = true;
   useEffect(()=>{
-    soundPlay(SoundEffect, 0.3);
+    soundPlay(SoundEffect, 0.1);
     soundPlay(Bgm, 0.01);
     console.log("play");
   },[])
