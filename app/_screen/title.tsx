@@ -8,11 +8,12 @@ interface CuteResultScreenProps {
 }
 
 const TitleScreen = ({changePage}) => {
+
+const TitleScreen = ({changePage}) => {
   return (
     <div className="container">
       <h1 className="title">きゅんぺちゃりぶれ</h1>
       <button className="play-button" onClick={()=>{changePage("select")}}>PLAY</button>
-
     </div>
   );
 };
