@@ -1,5 +1,5 @@
-// 音声の再生
-  // window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ "use client"
+  
   let ctxp = new AudioContext();
   let EffectSource
 
@@ -18,7 +18,7 @@
     return audioBuffer;
   }
 
-  function playEffect(ctx:any, audioBuffer:any) {
+  function playEffect(ctx:AudioContext, audioBuffer:AudioBuffer) {
     EffectSource = ctx.createBufferSource();
     // 変換されたバッファーを音源として設定
     EffectSource.buffer = audioBuffer;
@@ -28,9 +28,10 @@
   }
 
   const soundPlay = async(soundUrl:string) =>{
-
-    const professional = await setupEffect(soundUrl);
-    playEffect(ctxp, professional);
+    if (typeof window !== 'undefined') {
+      const effect = await setupEffect(soundUrl);
+      playEffect(ctxp, effect);
+    }
   }
 
 

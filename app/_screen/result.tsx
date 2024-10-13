@@ -10,6 +10,8 @@ const SoundEffect = "/sound/result1.mp3";
 
 const Result = () => {
 
+  
+
   return(
       <>
         <Button
