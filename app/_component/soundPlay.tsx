@@ -28,9 +28,10 @@
   }
 
   const soundPlay = async(soundUrl:string) =>{
-
-    const effect = await setupEffect(soundUrl);
-    playEffect(ctxp, effect);
+    if (typeof window !== 'undefined') {
+      const effect = await setupEffect(soundUrl);
+      playEffect(ctxp, effect);
+    }
   }
 
 
