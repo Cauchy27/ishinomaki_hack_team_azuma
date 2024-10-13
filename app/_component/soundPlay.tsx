@@ -18,7 +18,7 @@
     return audioBuffer;
   }
 
-  function playEffect(ctx:any, audioBuffer:any) {
+  function playEffect(ctx:AudioContext, audioBuffer:any) {
     EffectSource = ctx.createBufferSource();
     // 変換されたバッファーを音源として設定
     EffectSource.buffer = audioBuffer;
