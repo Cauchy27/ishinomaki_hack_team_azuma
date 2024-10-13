@@ -76,7 +76,7 @@ const Result: React.FC<CuteResultScreenProps> = ({ score1, score2, name1, name2,
               </Grid>
             </div>
 
-            <p className="text-xl mb-6 text-gray-700">{name1>name2?name1+"の勝ち❤️":name1<name2?name1+"の勝ち❤️":"どっちもかわいい❤️"}</p>
+            <p className="text-xl mb-6 text-gray-700">{score1>score2?name1+"の勝ち❤️":score1<score2?name1+"の勝ち❤️":"どっちもかわいい❤️"}</p>
 
             {/* <Star className="text-yellow-400 w-10 h-10" /> */}
             <Typography variant='h4' className='text-pink-600'>{message}</Typography>
