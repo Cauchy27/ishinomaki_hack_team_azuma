@@ -3,6 +3,8 @@
   let ctxp = new AudioContext();
   let EffectSource
 
+  let typeOfAudioBuffer:string
+
    // 音源を取得しAudioBuffer形式に変換して返す関数
   async function setupEffect(soundUrl:string) {
     console.log(soundUrl);
@@ -18,7 +20,7 @@
     return audioBuffer;
   }
 
-  function playEffect(ctx:AudioContext, audioBuffer:any) {
+  function playEffect(ctx:AudioContext, audioBuffer:AudioBuffer) {
     EffectSource = ctx.createBufferSource();
     // 変換されたバッファーを音源として設定
     EffectSource.buffer = audioBuffer;
@@ -29,8 +31,8 @@
 
   const soundPlay = async(soundUrl:string) =>{
 
-    const professional = await setupEffect(soundUrl);
-    playEffect(ctxp, professional);
+    const effect = await setupEffect(soundUrl);
+    playEffect(ctxp, effect);
   }
 
 
