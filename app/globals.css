@@ -25,3 +25,10 @@ body {
     text-wrap: balance;
   }
 }
+
+@font-face {
+  font-family: 'marshmallowpopheart';
+  src: url('./fonts/marshmallowpopheart.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
