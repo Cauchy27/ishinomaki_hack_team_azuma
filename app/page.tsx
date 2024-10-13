@@ -18,22 +18,30 @@ const Home = () => {
 
   const [resultIs, setResultIs] = useState<boolean>(false);
   const [pageTarget, setPageTarget] = useState<string>("title");
-  const [players, setPlayers] = useState<string[]>(["",""])
+  const [player1, setPlayer1] = useState<string>("");
+  const [player2, setPlayer2] = useState<string>("");
+  const [selectedKawaiiP1, setSelectedKawaiiP1] = useState<string>("")
+  const [selectedKawaiiP2, setSelectedKawaiiP2] = useState<string>("")
+  const [kawaiiWordP1, setKawaiiWordP1] = useState<string[]>([])
+  const [kawaiiWordP2, setKawaiiWordP2] = useState<string[]>([])
 
   const goResult = () => {
-    if(players[0] == players[1] && players[0] == ""){
-      setPlayers(testPlayersData);
-    }
     setResultIs(true);
     setPageTarget("");
   }
+
   const goTitle = () => {
     setResultIs(false);
     setPageTarget("title");
   }
 
-  const changePage = (target:string) => {
-    pageTargetList.map((page:string)=>{
+  const goConfirm = () => {
+    setResultIs(false);
+    setPageTarget("confirm")
+  }
+
+  const changePage = (target: string) => {
+    pageTargetList.map((page: string)=>{
       if(target==page){
         setPageTarget(page);
       }
@@ -61,15 +69,22 @@ const Home = () => {
         <Result
           score1={30}
           score2={32}
-          name1={players[0]}
-          name2={players[1]}
+          name1={player1}
+          name2={player2}
           message="そんなあなたが、イチバンかわいい❤️"
           goTitle={goTitle}
         />
       }
       {
         pageTarget=="select"&&
-        <Select/>
+        <Select
+          player1={player1}
+          setPlayer1={setPlayer1}
+          setPlayer2={setPlayer2}
+          setSelectedKawaiiP1={setSelectedKawaiiP1}
+          setSelectedKawaiiP2={setSelectedKawaiiP2}
+          goConfirm={goConfirm}
+        />
       }
       {
         pageTarget=="title"&&
@@ -80,6 +95,10 @@ const Home = () => {
       {
         pageTarget=="confirm"&&
         <Confirm
+          player1={player1}
+          player2={player2}
+          setP1Words={setKawaiiWordP1}
+          setP2Words={setKawaiiWordP2}
           changePage={changePage}
         />
       }

@@ -2,8 +2,24 @@
 
 import React, { useState, useEffect } from 'react';
 
-const Select = () => {
+interface SelectScreenProps {
+  player1: string,
+  setPlayer1: (name: string) => void,
+  setPlayer2: (name: string) => void,
+  setSelectedKawaiiP1: (path: string) => void,
+  setSelectedKawaiiP2: (path: string) => void,
+  goConfirm:() => void,
+}
 
+const Select: React.FC<SelectScreenProps> = (
+  {
+    player1,
+    setPlayer1,
+    setPlayer2,
+    setSelectedKawaiiP1,
+    setSelectedKawaiiP2,
+    goConfirm,
+  }) => {
   const [imageUrls] = useState([
     "/img/cuteimg1.png",
     "/img/cuteimg2.png",
@@ -15,8 +31,8 @@ const Select = () => {
     "/img/cuteimg8.png",
   ]);
 
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [selectedIndex, setSelectedIndex] = useState<number>(null);
+  const [optionImages, setOptionImages] = useState<string[]>([]); // 3つの選択肢の画像を管理
+  const [selectedIndex, setSelectedIndex] = useState<number>(null); // 選択された画像のインデックスを管理
   const [playerName, setPlayerName] = useState(""); // プレイヤー名の状態を管理
   const [errorMessage, setErrorMessage] = useState(""); // エラーメッセージ
   const [successMessage, setSuccessMessage] = useState(""); // 成功メッセージ
@@ -31,7 +47,7 @@ const Select = () => {
         randomImages.push(imageUrls[randomIndex]);
       }
     }
-    setSelectedImages(randomImages);
+    setOptionImages(randomImages);
   }, [imageUrls]);
 
   const selectImage = (index: number) => {
@@ -43,12 +59,12 @@ const Select = () => {
     setSuccessMessage(""); // 成功メッセージのリセット
 
     if (!playerName) {
-      setErrorMessage("プレイヤー名を入力してください。");
+      setErrorMessage("プレイヤー名を入力してね");
       return;
     }
 
     if (selectedIndex === null) {
-      setErrorMessage("キャラクターを選択してください。");
+      setErrorMessage("【好きな可愛い画像を選んでね");
       return;
     }
 
@@ -58,6 +74,15 @@ const Select = () => {
       setHasDisplayedMessage(true);
     } else {
       // 2回目以降のボタンクリックでページ遷移
+      if (player1 === "") {
+        console.log(playerName)
+        setPlayer1(playerName);
+        setSelectedKawaiiP1(optionImages[selectedIndex])
+      } else {
+        setPlayer2(playerName);
+        setSelectedKawaiiP2(optionImages[selectedIndex])
+      }
+      goConfirm();
     }
   };
 
@@ -81,7 +106,7 @@ const Select = () => {
         好きな【かわいい】を選ぼう！
       </h1>
       <div className="flex justify-around mt-8">
-        {selectedImages.map((img, index) => (
+        {optionImages.map((img, index) => (
           <img
             key={index}
             src={img}
