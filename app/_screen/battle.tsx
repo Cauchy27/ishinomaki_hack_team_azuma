@@ -1,44 +1,48 @@
 "use client";
 
+import { cardActionAreaClasses } from '@mui/material';
 import * as React from 'react';
 
 interface CuteResultScreenProps {
-  player1: string,
-  player2: string,
-  setP1Words: (words: string[]) => void,
-  setP2Words: (words: string[]) => void,
-  changePage: (page: string) => void,
+  player1: string;
+  player2: string;
+  selectedKawaiiP1: string;
+  selectedKawaiiP2: string;
+  kawaiiWordP1: string[];
+  kawaiiWordP2: string[];
+  goResult: () => void;
 }
 
-const Battle = (
-  {
-    player1,
-    player2,
-    setP1Words,
-    setP2Words,
-    goResult
-  }) => {
+const Battle = ({
+  player1,
+  player2,
+  selectedKawaiiP1,
+  selectedKawaiiP2,
+  kawaiiWordP1,
+  kawaiiWordP2,
+  goResult
+}: CuteResultScreenProps) => {
   const [selectedLeftCards, setSelectedLeftCards] = React.useState([]);
   const [selectedRightCards, setSelectedRightCards] = React.useState([]);
-  const [timer, setTimer] = React.useState(5);
+  const [timer, setTimer] = React.useState(300);
   const [timeUp, setTimeUp] = React.useState(false);
   const [showReady, setShowReady] = React.useState(true); // 「よ〜い」表示用
   const [showStart, setShowStart] = React.useState(false); // 「すた〜と！」表示用
 
   const [leftCards, setLeftCards] = React.useState([
-    { id: 1, name: "Left Card 1", image: "https://via.placeholder.com/100" },
-    { id: 2, name: "Left Card 2", image: "https://via.placeholder.com/100" },
-    { id: 3, name: "Left Card 3", image: "https://via.placeholder.com/100" },
-    { id: 4, name: "Left Card 4", image: "https://via.placeholder.com/100" },
-    { id: 5, name: "Left Card 5", image: "https://via.placeholder.com/100" },
+    { id: 1, name: kawaiiWordP1[0] },
+    { id: 2, name: kawaiiWordP1[1] },
+    { id: 3, name: kawaiiWordP1[2] },
+    { id: 4, name: kawaiiWordP1[3] },
+    { id: 5, name: kawaiiWordP1[4] },
   ]);
 
   const [rightCards, setRightCards] = React.useState([
-    { id: 1, name: "Right Card 1", image: "https://via.placeholder.com/100" },
-    { id: 2, name: "Right Card 2", image: "https://via.placeholder.com/100" },
-    { id: 3, name: "Right Card 3", image: "https://via.placeholder.com/100" },
-    { id: 4, name: "Right Card 4", image: "https://via.placeholder.com/100" },
-    { id: 5, name: "Right Card 5", image: "https://via.placeholder.com/100" },
+    { id: 1, name: kawaiiWordP2[0] },
+    { id: 2, name: kawaiiWordP2[1] },
+    { id: 3, name: kawaiiWordP2[2] },
+    { id: 4, name: kawaiiWordP2[3] },
+    { id: 5, name: kawaiiWordP2[4] },
   ]);
 
   const handleLeftCardClick = (card) => {
@@ -60,7 +64,7 @@ const Battle = (
 
     const startTimeout = setTimeout(() => {
       setShowStart(false);
-      setTimer(5); // タイマーを30からスタート
+      setTimer(300); // タイマーを30からスタート
     }, 4000); // さらに2秒後に「すた〜と！」を消す
 
     return () => {
@@ -121,10 +125,9 @@ const Battle = (
           {leftCards.map((card) => (
             <div
               key={card.id}
-              className="border p-2 text-center cursor-pointer hover:scale-105 transition-transform"
+              className="bg-white text-black p-4 text-center cursor-pointer hover:scale-105 transition-transform border border-gray-400"
               onClick={() => handleLeftCardClick(card)}
             >
-              <img src={card.image} alt={card.name} className="mx-auto" />
               <p>{card.name}</p>
             </div>
           ))}
@@ -133,65 +136,57 @@ const Battle = (
 
       {/* 左側のカード置き場 */}
       <div className="flex flex-col justify-center items-center w-1/6 p-5 relative">
-        {selectedLeftCards.length === 0 && (
-          <img
-            src="https://via.placeholder.com/120"
-            alt="Player 1 Card Slot"
-            className="absolute"
-            style={{ width: '100px', height: '100px' }}
-          />
-        )}
+        <div className="bg-gray-200 w-44 h-32 text-center flex items-center justify-center" />
         <div className="absolute inset-0 flex justify-center items-center">
           {selectedLeftCards.map((card, index) => (
             <div
               key={card.id}
-              className="absolute"
+              className="absolute bg-white text-black p-4 border border-gray-400"
               style={{
                 left: '50%',
                 top: '50%',
                 transform: `translate(-50%, -50%) translate(${index * 5}px, ${index * 5}px)`,
                 zIndex: index,
-                width: '100px',
-                height: '100px',
               }}
             >
-              <img src={card.image} alt={card.name} className="mx-auto" />
+              <p>{card.name}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* 中央のプレイヤー画像 */}
+      {/* プレイヤー1とプレイヤー2の名前 */}
       <div className="flex justify-center items-center w-1/3 relative">
-        <img src="https://via.placeholder.com/200" alt="Player 1" className="mr-10" />
-        <img src="https://via.placeholder.com/200" alt="Player 2" className="ml-10" />
+        <div className="absolute left-1/4 text-center" style={{top: "200px"}}>
+          <h2 className="text-pink-500 text-3xl font-bold bg-white rounded-full px-4 py-2 shadow-lg">
+            {player1}
+          </h2>
+        </div>
+        <img src={selectedKawaiiP1} alt="Player 1" className="mr-10" style={{ width: '200px', height: '200px' }} />
+        <div className="absolute right-1/4 text-center" style={{top: "200px"}}>
+          <h2 className="text-blue-500 text-3xl font-bold bg-white rounded-full px-4 py-2 shadow-lg">
+            {player2}
+          </h2>
+        </div>
+        <img src={selectedKawaiiP2} alt="Player 2" className="ml-10" style={{ width: '200px', height: '200px' }} />
       </div>
 
       {/* 右側のカード置き場 */}
       <div className="flex flex-col justify-center items-center w-1/6 p-5 relative">
-        {selectedRightCards.length === 0 && (
-          <img
-            src="https://via.placeholder.com/120"
-            alt="Player 2 Card Slot"
-            className="absolute"
-            style={{ width: '100px', height: '100px' }}
-          />
-        )}
+        <div className="bg-gray-200 w-44 h-32 text-center flex items-center justify-center" />
         <div className="absolute inset-0 flex justify-center items-center">
           {selectedRightCards.map((card, index) => (
             <div
               key={card.id}
-              className="absolute"
+              className="absolute bg-white text-black p-4 border border-gray-400"
               style={{
                 left: '50%',
                 top: '50%',
                 transform: `translate(-50%, -50%) translate(${index * 5}px, ${index * 5}px)`,
                 zIndex: index,
-                width: '100px',
-                height: '100px',
               }}
             >
-              <img src={card.image} alt={card.name} className="mx-auto" />
+              <p>{card.name}</p>
             </div>
           ))}
         </div>
@@ -203,10 +198,9 @@ const Battle = (
           {rightCards.map((card) => (
             <div
               key={card.id}
-              className="border p-2 text-center cursor-pointer hover:scale-105 transition-transform"
+              className="bg-white text-black p-4 text-center cursor-pointer hover:scale-105 transition-transform border border-gray-400"
               onClick={() => handleRightCardClick(card)}
             >
-              <img src={card.image} alt={card.name} className="mx-auto" />
               <p>{card.name}</p>
             </div>
           ))}

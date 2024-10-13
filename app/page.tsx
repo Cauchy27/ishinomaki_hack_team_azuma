@@ -51,18 +51,15 @@ const Home = () => {
 
   return (
     <div className="">
-      <Button
-        onClick={()=>{goResult()}}
-      >
-        テスト用：リザルト画面を出す
-      </Button>
       {
         pageTarget=="battle"&&
         <Battle
           player1={player1}
           player2={player2}
-          setP1Words={setKawaiiWordP1}
-          setP2Words={setKawaiiWordP2}
+          selectedKawaiiP1={selectedKawaiiP1}
+          selectedKawaiiP2={selectedKawaiiP2}
+          kawaiiWordP1={kawaiiWordP1}
+          kawaiiWordP2={kawaiiWordP2}
           goResult={goResult}
         />
       }
