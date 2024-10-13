@@ -5,11 +5,10 @@ import React, { useState, useEffect } from 'react';
 const Select = () => {
 
   const [imageUrls] = useState([
-    "https://example.com/cute1.jpg",
-    "https://example.com/cute2.jpg",
-    "https://example.com/cute3.jpg",
-    "https://example.com/cute4.jpg",
-    "https://example.com/cute5.jpg",
+    "../../public/img/cuteimg1.png",
+    "../../public/img/cuteimg2.png",
+    "../../public/img/cuteimg3.png",
+    "../../public/img/cuteimg4.png"
   ]);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>();
