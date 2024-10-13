@@ -31,7 +31,7 @@ const Select = () => {
 
   return (
     <div className="container mx-auto text-center bg-pink-50 p-6">
-      <h1 className="text-2xl font-bold text-pink-500" style={{ fontFamily: 'marshmallowpopheart' }}>
+      <h1 className="text-6xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
         好きな【かわいい】を選ぼう！
       </h1>
       <div className="flex justify-around mt-8">
