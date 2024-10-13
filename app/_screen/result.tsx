@@ -5,6 +5,7 @@ import { Heart, Award, Star, Sparkles } from 'lucide-react';
 import { soundPlay } from '../_component/soundPlay';
 
 const SoundEffect = "/sound/result1.mp3";
+const Bgm = "/sound/result2.mp3";
 
 interface CuteResultScreenProps {
   score1: number;
@@ -25,8 +26,11 @@ const Result: React.FC<CuteResultScreenProps> = ({
 }) => {
   const winner = score1 > score2 ? name1 : score2 > score1 ? name2 : "引き分け";
 
+  let test = true;
   useEffect(()=>{
-    soundPlay(SoundEffect);
+    soundPlay(SoundEffect, 0.3);
+    soundPlay(Bgm, 0.01);
+    console.log("play");
   },[])
 
   return (
