@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import Battle from "./_screen/battle";
 import Result from "./_screen/result";
 import Select from "./_screen/select";
