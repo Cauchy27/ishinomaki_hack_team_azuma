@@ -5,10 +5,10 @@ import React, { useState, useEffect } from 'react';
 const Select = () => {
 
   const [imageUrls] = useState([
-    "../../public/img/cuteimg1.png",
-    "../../public/img/cuteimg2.png",
-    "../../public/img/cuteimg3.png",
-    "../../public/img/cuteimg4.png"
+    "/img/cuteimg1.png",
+    "/img/cuteimg2.png",
+    "/img/cuteimg3.png",
+    "/img/cuteimg4.png",
   ]);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>();
@@ -31,7 +31,7 @@ const Select = () => {
 
   return (
     <div className="container mx-auto text-center bg-pink-50 p-6">
-      <h1 className="text-2xl font-bold text-pink-500">
+      <h1 className="text-2xl font-bold text-pink-500" style={{ fontFamily: 'marshmallowpopheart' }}>
         好きな【かわいい】を選ぼう！
       </h1>
       <div className="flex justify-around mt-8">
