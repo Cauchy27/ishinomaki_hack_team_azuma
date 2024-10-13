@@ -18,6 +18,7 @@ const Home = () => {
 
   const goResult = () => {
     setResultIs(true);
+    setPageTarget("");
   }
   const goTitle = () => {
     setResultIs(false);
@@ -59,7 +60,7 @@ const Home = () => {
       {
         pageTarget=="title"&&
         <Tittle
-          changePage={setPageTarget}
+          changePage={changePage}
         />
       }
     </div>
