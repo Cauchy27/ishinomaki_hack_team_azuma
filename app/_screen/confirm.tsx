@@ -16,10 +16,16 @@ const wordList :string []= [
   "ゆるい",
 ];
 
-const Confirm = () => {
+interface CuteResultScreenProps {
+  changePage:()=> void,
+}
+
+const Confirm = ({changePage}) => {
   const [myWords, setWords] = useState<string[]>([""]);
   const [inputValue, setInputValue] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [infoMessage, setinfoMessage] = useState<string>("");
+  const [isWait, setIsWait] = useState<boolean>(false);
 
   function getRandomElements<T>(arr: T[], count: number): T[] {
     // 配列をシャッフルする
@@ -44,19 +50,50 @@ const Confirm = () => {
   };
   
   const handleAddWord = () => {
+    setErrorMessage("");
+
     if (inputValue.trim() == "") {
       // 未入力
-      setErrorMessage("入力が必要です。");
+      setErrorMessage("なにか　にゅうりょくしてね");
     } else {
-      myWords[myWords.length - 1] = inputValue;
-      setInputValue("");
-      setErrorMessage("")
-      console.log(myWords);
+      const isConfirmed = window.confirm(`てふだに「 ${inputValue}」をついかするよ？`);
+      if(isConfirmed) {
+        myWords[myWords.length - 1] = inputValue;
+        setinfoMessage("あいてがじゅんびをしているよ");
+        setInputValue("");
+        setIsWait(true);
+
+        // ボタンを再度活性にする処理を追加
+        setTimeout(() => {
+          setInputValue("");
+          setErrorMessage("");
+          setinfoMessage("");
+          setIsWait(false);
+          // 画面遷移
+          changePage("battle");
+        }, 5000);
+
+        console.log(myWords);
+      }
     } 
   };
   
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (myWords.length === 0) return;
+
+    if (event.key === "ArrowUp") {
+    } else if (event.key === "ArrowDown") {
+    }
+  };
+
   React.useEffect(() => {
     initCard();
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
@@ -81,11 +118,13 @@ const Confirm = () => {
           value={inputValue}
           onChange={handleInputChange}
           className="p-2 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={isWait}
           placeholder="ついかのようそ"
         />
         <button
           onClick={handleAddWord}
-          className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+          className={`p-2 rounded-lg ${isWait ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'} text-white`}
+          disabled={isWait}
         >
           けってい
         </button>
@@ -93,6 +132,11 @@ const Confirm = () => {
       {errorMessage && (
           <div className="text-red-500 mt-4">
             {errorMessage}
+          </div>
+      )}
+      {infoMessage && (
+          <div className="mt-4">
+            {infoMessage}
           </div>
       )}
       </main>

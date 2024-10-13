@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 
 import { useState, useEffect } from "react";
 
-const pageTargetList = ["title", "select", "confirm", "battle"];
+const pageTargetList = ["title", "select", "confirm", "battle", "result"];
 
 const testPlayersData = ["イノウエ","ミコト"]
 
@@ -31,10 +31,6 @@ const Home = () => {
     setResultIs(false);
     setPageTarget("title");
   }
-  const goConfirm = () => {
-    setResultIs(false);
-    setPageTarget("confirm");
-  }
 
   const changePage = (target:string) => {
     pageTargetList.map((page:string)=>{
@@ -47,7 +43,7 @@ const Home = () => {
   return (
     <div className="">
       <Button
-        onClick={()=>{goConfirm()}}
+        onClick={()=>{changePage("confirm")}}
       >
         テスト用：要素確認画面を出す
       </Button>
@@ -83,7 +79,9 @@ const Home = () => {
       }
       {
         pageTarget=="confirm"&&
-        <Confirm/>
+        <Confirm
+          changePage={changePage}
+        />
       }
     </div>
   );
