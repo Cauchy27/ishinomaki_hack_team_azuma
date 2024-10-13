@@ -1,6 +1,4 @@
-  declare const AudioContext: {
-    new (): AudioContext;
-  };
+ "use client"
   
   let ctxp = new AudioContext();
   let EffectSource
