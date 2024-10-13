@@ -1,5 +1,5 @@
-// 音声の再生
-  // window.AudioContext = window.AudioContext || window.webkitAudioContext;
+ "use client"
+  
   let ctxp = new AudioContext();
   let EffectSource
 
@@ -28,9 +28,10 @@
   }
 
   const soundPlay = async(soundUrl:string) =>{
-
-    const effect = await setupEffect(soundUrl);
-    playEffect(ctxp, effect);
+    if (typeof window !== 'undefined') {
+      const effect = await setupEffect(soundUrl);
+      playEffect(ctxp, effect);
+    }
   }
 
 

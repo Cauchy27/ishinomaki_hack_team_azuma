@@ -1,14 +1,20 @@
-"use client"
+"use client"; // これを一番上に置く
 
-import * as React from 'react';
+import React from 'react';
+// import './app.css'; // 必要なスタイルをインポート
 
-const Tittle = () => {
-
-  return(
-      <>
-        <p>ここにタイトル画面の内容</p>
-      </>
-  )
+interface CuteResultScreenProps {
+  changePage:()=> void,
 }
 
-export default Tittle;
+const TitleScreen = ({changePage}) => {
+
+  return (
+    <div className="container">
+      <h1 className="title">きゅんぺちゃりぶれ</h1>
+      <button className="play-button" onClick={()=>{changePage("select")}}>PLAY</button>
+    </div>
+  );
+};
+
+export default TitleScreen;
