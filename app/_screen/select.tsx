@@ -9,10 +9,18 @@ const Select = () => {
     "/img/cuteimg2.png",
     "/img/cuteimg3.png",
     "/img/cuteimg4.png",
+    "/img/cuteimg5.png",
+    "/img/cuteimg6.png",
+    "/img/cuteimg7.png",
+    "/img/cuteimg8.png",
   ]);
+
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const [selectedIndex, setSelectedIndex] = useState<number>();
+  const [selectedIndex, setSelectedIndex] = useState<number>(null);
   const [playerName, setPlayerName] = useState(""); // プレイヤー名の状態を管理
+  const [errorMessage, setErrorMessage] = useState(""); // エラーメッセージ
+  const [successMessage, setSuccessMessage] = useState(""); // 成功メッセージ
+  const [hasDisplayedMessage, setHasDisplayedMessage] = useState(false); // メッセージ表示を一度だけにするための状態
 
   useEffect(() => {
     // ランダムに3つの画像を選択
@@ -28,6 +36,29 @@ const Select = () => {
 
   const selectImage = (index: number) => {
     setSelectedIndex(index);
+  };
+
+  const handleDecision = () => {
+    setErrorMessage(""); // エラーメッセージのリセット
+    setSuccessMessage(""); // 成功メッセージのリセット
+
+    if (!playerName) {
+      setErrorMessage("プレイヤー名を入力してください。");
+      return;
+    }
+
+    if (selectedIndex === null) {
+      setErrorMessage("キャラクターを選択してください。");
+      return;
+    }
+
+    // 初回は成功メッセージを表示し、再度ボタンが押されたときにページ遷移
+    if (!hasDisplayedMessage) {
+      setSuccessMessage("プレイヤー名をもっと可愛くしなきゃ！");
+      setHasDisplayedMessage(true);
+    } else {
+      // 2回目以降のボタンクリックでページ遷移
+    }
   };
 
   return (
@@ -64,6 +95,28 @@ const Select = () => {
           />
         ))}
       </div>
+      
+      {/* 決定ボタン */}
+      <button
+        onClick={handleDecision}
+        className="mt-8 bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition"
+      >
+        決定
+      </button>
+
+      {/* エラーメッセージ */}
+      {errorMessage && (
+        <p className="text-red-500 bg-red-100 p-3 rounded-lg font-semibold mt-4 animate-pulse shadow-lg border-2 border-red-300">
+          {errorMessage}
+        </p>
+      )}
+
+      {/* 成功メッセージ */}
+      {successMessage && (
+        <p className="text-pink-500 bg-pink-100 p-4 rounded-lg font-bold mt-4 animate-bounce shadow-lg border-2 border-pink-300">
+          {successMessage}
+        </p>
+      )}
     </div>
   );
 }
