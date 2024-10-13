@@ -1,25 +1,14 @@
-"use client";
+"use client"; // これを一番上に置く
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import './App.css';
+import { useRouter } from 'next/router'; // Next.jsのルーティングを使用
+import './app.css'; // 必要なスタイルをインポート
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<TitleScreen />} />
-        <Route path="/next" element={<NextScreen />} />
-      </Routes>
-    </Router>
-  );
-}
-
-function TitleScreen() {
-  const navigate = useNavigate();
+const TitleScreen = () => {
+  const router = useRouter(); // useRouterでNext.jsのルーティングを使用
 
   const goToNextPage = () => {
-    navigate('/next');
+    router.push('/next'); // "/next"ページへ遷移
   };
 
   return (
@@ -28,15 +17,6 @@ function TitleScreen() {
       <button className="play-button" onClick={goToNextPage}>PLAY</button>
     </div>
   );
-}
+};
 
-function NextScreen() {
-  return (
-    <div className="container">
-      <h1 className="title">次の画面に来ました！</h1>
-      <Link to="/" className="play-button">戻る</Link>
-    </div>
-  );
-}
-
-export default App;
+export default TitleScreen;
