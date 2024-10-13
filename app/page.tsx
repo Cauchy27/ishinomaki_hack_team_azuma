@@ -12,12 +12,18 @@ import { useState, useEffect } from "react";
 
 const pageTargetList = ["title", "select", "confirm", "battle"];
 
+const testPlayersData = ["イノウエ","ミコト"]
+
 const Home = () => {
 
   const [resultIs, setResultIs] = useState<boolean>(false);
   const [pageTarget, setPageTarget] = useState<string>("title");
+  const [players, setPlayers] = useState<string[]>(["",""])
 
   const goResult = () => {
+    if(players[0] == players[1] && players[0] == ""){
+      setPlayers(testPlayersData);
+    }
     setResultIs(true);
     setPageTarget("");
   }
@@ -57,9 +63,11 @@ const Home = () => {
       {
         resultIs &&
         <Result
-          score={70}
-          totalQuestions={10}
-          message="あなたの勝利です！！かわいい❤️"
+          score1={30}
+          score2={32}
+          name1={players[0]}
+          name2={players[1]}
+          message="そんなあなたが、イチバンかわいい❤️"
           goTitle={goTitle}
         />
       }
