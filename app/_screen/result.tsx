@@ -14,9 +14,10 @@ interface CuteResultScreenProps {
   score: number;
   totalQuestions: number;
   message: string;
+  goTitle:()=> void
 }
 
-const Result: React.FC<CuteResultScreenProps> = ({ score, totalQuestions, message }) => {
+const Result: React.FC<CuteResultScreenProps> = ({ score, totalQuestions, message, goTitle}) => {
 
   const percentage = (score / totalQuestions) * 100;
 
@@ -54,9 +55,12 @@ const Result: React.FC<CuteResultScreenProps> = ({ score, totalQuestions, messag
 
             <Award className="mx-auto text-purple-500 w-16 h-16 mb-6" />
 
-            <button className="bg-pink-500 hover:bg-pink-600 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300">
+            <Button 
+              className="bg-pink-500 hover:bg-pink-600 text-white text-lg font-bold py-3 px-6 rounded-full transition duration-300"
+              onClick={()=>{goTitle()}}
+            >
               Play Again
-            </button>
+            </Button>
           </div>
         </div>
   )
