@@ -52,18 +52,19 @@ const Home = () => {
   return (
     <div className="">
       <Button
-        onClick={()=>{changePage("confirm")}}
-      >
-        テスト用：要素確認画面を出す
-      </Button>
-      <Button
         onClick={()=>{goResult()}}
       >
         テスト用：リザルト画面を出す
       </Button>
       {
         pageTarget=="battle"&&
-        <Battle/>
+        <Battle
+          player1={player1}
+          player2={player2}
+          setP1Words={setKawaiiWordP1}
+          setP2Words={setKawaiiWordP2}
+          goResult={goResult}
+        />
       }
       {
         resultIs &&

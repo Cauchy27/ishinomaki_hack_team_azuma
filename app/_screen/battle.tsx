@@ -2,10 +2,25 @@
 
 import * as React from 'react';
 
-const Battle = () => {
+interface CuteResultScreenProps {
+  player1: string,
+  player2: string,
+  setP1Words: (words: string[]) => void,
+  setP2Words: (words: string[]) => void,
+  changePage: (page: string) => void,
+}
+
+const Battle = (
+  {
+    player1,
+    player2,
+    setP1Words,
+    setP2Words,
+    goResult
+  }) => {
   const [selectedLeftCards, setSelectedLeftCards] = React.useState([]);
   const [selectedRightCards, setSelectedRightCards] = React.useState([]);
-  const [timer, setTimer] = React.useState(30);
+  const [timer, setTimer] = React.useState(5);
   const [timeUp, setTimeUp] = React.useState(false);
   const [showReady, setShowReady] = React.useState(true); // 「よ〜い」表示用
   const [showStart, setShowStart] = React.useState(false); // 「すた〜と！」表示用
@@ -45,7 +60,7 @@ const Battle = () => {
 
     const startTimeout = setTimeout(() => {
       setShowStart(false);
-      setTimer(30); // タイマーを30からスタート
+      setTimer(5); // タイマーを30からスタート
     }, 4000); // さらに2秒後に「すた〜と！」を消す
 
     return () => {
@@ -61,6 +76,10 @@ const Battle = () => {
       return () => clearTimeout(countdown);
     } else if (timer === 0) {
       setTimeUp(true); // タイマーが0になったらたいむあっぷ表示
+
+      setTimeout(() => {
+        goResult();
+      }, 4000);
     }
   }, [timer, showReady, showStart]);
 
