@@ -12,6 +12,7 @@ const Select = () => {
   ]);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>();
+  const [playerName, setPlayerName] = useState(""); // プレイヤー名の状態を管理
 
   useEffect(() => {
     // ランダムに3つの画像を選択
@@ -31,6 +32,20 @@ const Select = () => {
 
   return (
     <div className="container mx-auto text-center bg-pink-50 p-6">
+      {/* プレイヤー名の入力欄 */}
+      <div className="mb-4">
+        <label className="text-xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
+          プレイヤー名:　
+        </label>
+        <input
+          type="text"
+          id="playerName"
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
+          className="border border-pink-500 rounded px-4 py-2 mt-2 text-center"
+          placeholder="プレイヤー名"
+        />
+      </div>
       <h1 className="text-6xl text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
         好きな【かわいい】を選ぼう！
       </h1>
