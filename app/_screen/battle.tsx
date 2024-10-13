@@ -2,6 +2,7 @@
 
 import { cardActionAreaClasses } from '@mui/material';
 import * as React from 'react';
+import { Typography } from '@mui/material';
 
 interface CuteResultScreenProps {
   player1: string;
@@ -11,7 +12,10 @@ interface CuteResultScreenProps {
   kawaiiWordP1: string[];
   kawaiiWordP2: string[];
   goResult: () => void;
+  battleId:number
 }
+
+const countStart=120; //タイマーの開始時刻
 
 const Battle = ({
   player1,
@@ -20,11 +24,12 @@ const Battle = ({
   selectedKawaiiP2,
   kawaiiWordP1,
   kawaiiWordP2,
-  goResult
+  goResult,
+  battleId
 }: CuteResultScreenProps) => {
   const [selectedLeftCards, setSelectedLeftCards] = React.useState([]);
   const [selectedRightCards, setSelectedRightCards] = React.useState([]);
-  const [timer, setTimer] = React.useState(300);
+  const [timer, setTimer] = React.useState(countStart);
   const [timeUp, setTimeUp] = React.useState(false);
   const [showReady, setShowReady] = React.useState(true); // 「よ〜い」表示用
   const [showStart, setShowStart] = React.useState(false); // 「すた〜と！」表示用
@@ -64,7 +69,7 @@ const Battle = ({
 
     const startTimeout = setTimeout(() => {
       setShowStart(false);
-      setTimer(300); // タイマーを30からスタート
+      setTimer(countStart); // タイマーをcountStartからスタート
     }, 4000); // さらに2秒後に「すた〜と！」を消す
 
     return () => {
@@ -95,6 +100,12 @@ const Battle = ({
           {timer}
         </div>
       </div>
+      {
+        battleId > 0 &&
+        <div className='absolute top-20 mt-20 left-1/2 text-blue-500 font-bold items-center justify-center text-3xl transform -translate-x-1/2 text-center'>
+          <h1 className="text-white text-3xl ">るーむ：{battleId}</h1>
+        </div>
+      }
 
       {/* グレーアウトオーバーレイ */}
       {timeUp && (

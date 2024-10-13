@@ -11,6 +11,8 @@ import { Button } from "@mui/material";
 
 import { useState, useEffect } from "react";
 
+import { Supabase } from "./_component/supabase";
+
 const pageTargetList = ["title", "select", "confirm", "battle", "result"];
 
 const testPlayersData = ["イノウエ","ミコト"]
@@ -26,7 +28,13 @@ const Home = () => {
   const [kawaiiWordP1, setKawaiiWordP1] = useState<string[]>([])
   const [kawaiiWordP2, setKawaiiWordP2] = useState<string[]>([])
 
+  const [battleId, setBattleId] = useState<number>(0);
+  const [point, setPoint] = useState<number[]>([-1,-1]);
+  
   const goResult = () => {
+    // 結果取得
+
+    // 画面切り替え
     setResultIs(true);
     setPageTarget("");
   }
@@ -49,8 +57,59 @@ const Home = () => {
     });
   }
 
+  const insertBattleData = async() => {
+    const storage = Supabase.from("Battle");
+    const { data, error } = await storage.select("id").order("id",{ascending:false});
+    const { data2, error2 } = await storage.insert([ { 
+      id:data[0].id+1,
+      player1Name: 'player1', 
+      player2Name: 'player2' ,
+    }]).select("id");
+    if(error2){
+      console.log(error2);
+      return 
+    }
+    setBattleId(data[0].id+1)
+  }
+
+  const getBattleData = async() => {
+    const storage = Supabase.from("Battle");
+    let { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
+    if(data[0]?.player1Count && data[0]?.player2Count){
+      setPoint([data[0].player1Count, data[0].player2Count]);
+    }
+  }
+
+  const updateBattleData = async() => {
+    const storage = Supabase.from("Battle");
+    console.log("update")
+    await storage.update({player1Name:player1, player2Name:player2}).eq('id',battleId).select()
+  }
+
+  useEffect(()=>{
+    getBattleData();
+    if(battleId>0){
+      updateBattleData();
+    }
+  },[player1,player2]);
+
   return (
     <div className="">
+      {/* <Button
+        onClick={()=>{insertBattleData()}}
+      >
+        レコードインサート{battleId}
+      </Button>
+      <Button
+        onClick={()=>{changePage("confirm")}}
+      >
+        テスト用：要素確認画面を出す
+      </Button>
+      <Button
+        onClick={()=>{goResult()}}
+      >
+        テスト用：リザルト画面を出す
+      </Button> */}
       {
         pageTarget=="battle"&&
         <Battle
@@ -61,17 +120,37 @@ const Home = () => {
           kawaiiWordP1={kawaiiWordP1}
           kawaiiWordP2={kawaiiWordP2}
           goResult={goResult}
+          battleId={battleId}
         />
       }
+      {/* <Battle
+          player1={player1}
+          player2={player2}
+          selectedKawaiiP1={selectedKawaiiP1}
+          selectedKawaiiP2={selectedKawaiiP2}
+          kawaiiWordP1={kawaiiWordP1}
+          kawaiiWordP2={kawaiiWordP2}
+          goResult={goResult}
+        />
+      }
+      {/* <Battle
+          player1={player1}
+          player2={player2}
+          setP1Words={setKawaiiWordP1}
+          setP2Words={setKawaiiWordP2}
+          goResult={goResult}
+          battleId={200}
+        /> */}
       {
-        resultIs &&
+        resultIs && point[0] !=-1 && point[1] != -1 &&
         <Result
-          score1={30}
-          score2={32}
+          score1={point[0]}
+          score2={point[1]}
           name1={player1}
           name2={player2}
-          message="そんなあなたが、イチバンかわいい❤️"
+          message="そんなあなたが、イチバンかわいい❤️" //メッセージもランダムでも
           goTitle={goTitle}
+          // battleId={battleId}
         />
       }
       {
@@ -83,12 +162,14 @@ const Home = () => {
           setSelectedKawaiiP1={setSelectedKawaiiP1}
           setSelectedKawaiiP2={setSelectedKawaiiP2}
           goConfirm={goConfirm}
+          battleId={battleId}
         />
       }
       {
         pageTarget=="title"&&
         <Tittle
           changePage={changePage}
+          insertBattleData={insertBattleData}
         />
       }
       {

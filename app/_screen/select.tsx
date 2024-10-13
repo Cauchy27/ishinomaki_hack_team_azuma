@@ -1,5 +1,6 @@
 "use client"
 
+import { Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 interface SelectScreenProps {
@@ -9,6 +10,7 @@ interface SelectScreenProps {
   setSelectedKawaiiP1: (path: string) => void,
   setSelectedKawaiiP2: (path: string) => void,
   goConfirm:() => void,
+  battleId:number
 }
 
 const Select: React.FC<SelectScreenProps> = (
@@ -19,6 +21,7 @@ const Select: React.FC<SelectScreenProps> = (
     setSelectedKawaiiP1,
     setSelectedKawaiiP2,
     goConfirm,
+    battleId
   }) => {
   const [imageUrls] = useState([
     "/img/cuteimg1.png",
@@ -142,6 +145,12 @@ const Select: React.FC<SelectScreenProps> = (
           {successMessage}
         </p>
       )}
+      {
+        battleId > 0 &&
+        <div className='mt-20'>
+          <Typography variant='h1'>対戦ID：{battleId}</Typography>
+        </div>
+      }
     </div>
   );
 }
