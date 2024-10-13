@@ -1,5 +1,7 @@
-// 音声の再生
-  // window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  declare const AudioContext: {
+    new (): AudioContext;
+  };
+  
   let ctxp = new AudioContext();
   let EffectSource
 
