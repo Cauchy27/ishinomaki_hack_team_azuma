@@ -98,6 +98,15 @@ const Home = () => {
 
   return (
     <div className="">
+      <div className="absolute top-30 left-30 w-150 h-150 z-50 pointer-events-none">
+        <img
+          src="/img/QR_code.png"
+          alt="Overlay Image"
+          className="object-cover w-150 h-150 fixed"
+          style={{width: "200px", top: "30px", left: "30px"}}
+        />
+      </div>
+
       {/* <Button
         onClick={()=>{insertBattleData()}}
       >
