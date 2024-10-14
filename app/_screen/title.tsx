@@ -7,7 +7,7 @@ const TitleScreen = ({changePage, insertBattleData}) => {
       style={{ 
         backgroundImage: "url('/img/S__6176777_0.png')",
         /* 代替方法: */
-        /* background: "url('/img/S__6176777_0.png') no-repeat center center fixed",
+        /* background: "url('/img/S__6176777_1.png') no-repeat center center fixed",
         backgroundSize: "cover" */
       }}
     >
