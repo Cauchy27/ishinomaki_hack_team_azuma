@@ -168,13 +168,13 @@ const Battle = ({
 
       {/* プレイヤー1とプレイヤー2の名前 */}
       <div className="flex justify-center items-center w-1/3 relative">
-        <div className="absolute left-1/4 text-center" style={{top: "200px"}}>
+        <div className="absolute left-1/4 text-center" style={{top: "200px", right: "-10px"}}>
           <h2 className="text-pink-500 text-3xl font-bold bg-white rounded-full px-4 py-2 shadow-lg">
             {player1}
           </h2>
         </div>
         <img src={selectedKawaiiP1} alt="Player 1" className="mr-10" style={{ width: '200px', height: '200px' }} />
-        <div className="absolute right-1/4 text-center" style={{top: "200px"}}>
+        <div className="absolute right-1/4 text-center" style={{top: "200px", right: "-10px"}}>
           <h2 className="text-blue-500 text-3xl font-bold bg-white rounded-full px-4 py-2 shadow-lg">
             {player2}
           </h2>
