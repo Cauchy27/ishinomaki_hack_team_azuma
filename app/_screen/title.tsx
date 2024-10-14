@@ -15,7 +15,7 @@ const TitleScreen = ({changePage, insertBattleData}) => {
       <div className="absolute inset-0 bg-black opacity-30 z-0"></div>
 
       <div className="text-center p-8 bg-white bg-opacity-80 rounded-3xl shadow-lg z-10">
-        <h1 className="text-4xl font-bold mb-6">
+        <h1 className="text-6xl font-bold mb-6">
           <label className="text-pink-400" style={{ fontFamily: 'marshmallowpopheart' }}>
             ぱふぇぱはれ
           </label>
@@ -30,6 +30,14 @@ const TitleScreen = ({changePage, insertBattleData}) => {
             PLAY
           </label>
         </button>
+      </div>
+      <div className="absolute bottom-3 text-center p-8 bg-white bg-opacity-80 rounded-3xl shadow-lg z-10">
+        <label className="text-2xl text-pink-500 " style={{ fontFamily: 'marshmallowpopheart' }}>
+          かわいいでたたかえ！<br/>
+          くばられたてふだで「かわいい」をせつめいしよう！<br/>
+          いちばん「きゅん」をあつめたひとがゆうしょう！！<br/><br/>
+          しんさいんさんは、QRこーどをよみこんでね♪
+        </label>
       </div>
     </div>
   );
