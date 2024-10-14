@@ -51,7 +51,7 @@ const Confirm: React.FC<CuteResultScreenProps> = (
   }
   
   function initCard() {
-    let randWords:string[] = getRandomElements(wordList, 4);
+    const randWords:string[] = getRandomElements(wordList, 4);
     randWords.push("　");
     setWords(randWords);
   }

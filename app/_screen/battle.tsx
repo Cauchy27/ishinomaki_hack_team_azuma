@@ -1,8 +1,8 @@
 "use client";
 
-import { cardActionAreaClasses } from '@mui/material';
+// import { cardActionAreaClasses } from '@mui/material';
 import * as React from 'react';
-import { Typography } from '@mui/material';
+// import { Typography } from '@mui/material';
 
 interface CuteResultScreenProps {
   player1: string;

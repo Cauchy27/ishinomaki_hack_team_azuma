@@ -3,10 +3,10 @@
 import React from 'react';
 // import './app.css'; // 必要なスタイルをインポート
 
-interface CuteResultScreenProps {
-  changePage:()=> void,
-  insertBattleData:() => void
-}
+// interface CuteResultScreenProps {
+//   changePage:()=> void,
+//   insertBattleData:() => void
+// }
 
 const TitleScreen = ({changePage,insertBattleData}) => {
 
