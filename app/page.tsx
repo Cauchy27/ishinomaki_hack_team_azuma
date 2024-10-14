@@ -79,7 +79,7 @@ const Home = () => {
       setPoint([data[0].player1Count, data[0].player2Count]);
     }
     if(error){
-      console.log(error)
+      console.log("error",error)
     }
   }
 
