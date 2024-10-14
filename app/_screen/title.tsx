@@ -5,14 +5,15 @@ import React from 'react';
 
 interface CuteResultScreenProps {
   changePage:()=> void,
+  insertBattleData:() => void
 }
 
-const TitleScreen = ({changePage}) => {
+const TitleScreen = ({changePage,insertBattleData}) => {
 
   return (
     <div className="container">
       <h1 className="title">きゅんぺちゃりぶれ</h1>
-      <button className="play-button" onClick={()=>{changePage("select")}}>PLAY</button>
+      <button className="play-button" onClick={()=>{changePage("select");insertBattleData();}}>PLAY</button>
     </div>
   );
 };
