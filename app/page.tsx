@@ -43,6 +43,8 @@ const Home = () => {
   const goTitle = () => {
     setResultIs(false);
     setPageTarget("title");
+    setPlayer1("");
+    setPlayer2("");
   }
 
   const goConfirm = () => {
