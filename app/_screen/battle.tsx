@@ -2,6 +2,7 @@
 
 // import { cardActionAreaClasses } from '@mui/material';
 import * as React from 'react';
+import { useEffect } from 'react';
 // import { Typography } from '@mui/material';
 
 interface CuteResultScreenProps {
@@ -15,7 +16,7 @@ interface CuteResultScreenProps {
   battleId:number
 }
 
-const countStart=5; //タイマーの開始時刻
+const countStart=120; //タイマーの開始時刻
 
 const Battle = ({
   player1,
@@ -49,6 +50,14 @@ const Battle = ({
     { id: 4, name: kawaiiWordP2[3] },
     { id: 5, name: kawaiiWordP2[4] },
   ]);
+
+  useEffect(() => {
+    // クライアントサイドでのみ音声を再生
+    if (typeof window !== 'undefined') {
+      const audio = new Audio('/sound/start1.mp3');
+      audio.play().catch(error => console.error('Audio playback failed', error));
+    }
+  }, []);
 
   const handleLeftCardClick = (card) => {
     setSelectedLeftCards((prev) => [...prev, card]);
