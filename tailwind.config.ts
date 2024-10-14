@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        backgroundImage: {
+          Bg1: "url('../src/img/my-img-name.jpg')",
+        },
       },
     },
   },
