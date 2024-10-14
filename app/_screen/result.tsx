@@ -55,7 +55,7 @@ const Result: React.FC<CuteResultScreenProps> = ({
           </div>
 
           <p className="text-xl text-purple-400 mb-6 font-bold italic">
-            "{message}"
+            {message}
           </p>
 
           <button 
