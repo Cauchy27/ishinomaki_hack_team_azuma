@@ -72,7 +72,7 @@ const Home = () => {
     }
   }
 
-  
+
   const getBattleData = async() => {
     const storage = Supabase.from("Battle");
     const { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
@@ -101,7 +101,7 @@ const Home = () => {
     <div className="">
       <div className="absolute top-30 left-30 w-150 h-150 z-50 pointer-events-none">
         <img
-          src="/img/QR_code.png"
+          src="/img/QR_code2.png"
           alt="Overlay Image"
           className="object-cover w-150 h-150 fixed"
           style={{width: "200px", top: "30px", left: "30px"}}
