@@ -32,6 +32,12 @@ const Select: React.FC<SelectScreenProps> = (
     "/img/cuteimg6.png",
     "/img/cuteimg7.png",
     "/img/cuteimg8.png",
+    "/img/cuteimg9.jpg",
+    "/img/cuteimg10.png",
+    "/img/cuteimg11.png",
+    "/img/cuteimg12.webp",
+    "/img/cuteimg13.jpg",
+    "/img/cuteimg14.jpg",
   ]);
 
   const [optionImages, setOptionImages] = useState<string[]>([]); // 3つの選択肢の画像を管理
