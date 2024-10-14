@@ -6,7 +6,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react'
 import backgroundImage from './assets/images/背景画像.png';
 
-const Title = () => {
+const Title2 = () => {
 
     const backgroundImage = {
       height: '50%',
@@ -60,4 +60,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default Title2;

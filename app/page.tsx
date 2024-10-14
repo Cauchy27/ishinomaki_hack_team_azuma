@@ -1,6 +1,6 @@
 "use client"
 
-import Tittle from "./_screen/title";
+import Tittle2 from "./_screen/title2";
 import Select from "./_screen/select";
 import Confirm from "./_screen/confirm";
 import Battle from "./_screen/battle";
@@ -77,8 +77,7 @@ const Home = () => {
       }
       {
         pageTarget=="title"&&
-        <Tittle
-          changePage={changePage}
+        <Tittle2
         />
       }
       {
