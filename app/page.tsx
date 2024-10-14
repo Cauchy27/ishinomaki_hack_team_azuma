@@ -3,6 +3,8 @@
 import Confirm from "./_screen/confirm";
 import Battle from "./_screen/battle";
 import Result from "./_screen/result";
+import Tittle from "./_screen/title";
+import Select from "./_screen/select";
 import "./_styles/common.css";
 
 // import { Button } from "@mui/material";
