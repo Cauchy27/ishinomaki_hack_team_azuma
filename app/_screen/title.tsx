@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-interface CuteResultScreenProps {
-  changePage:()=> void,
-}
+// interface CuteResultScreenProps {
+//   changePage:()=> void,
+// }
 
-const TitleScreen = ({changePage}) => {
+const TitleScreen = ({changePage, insertBattleData}) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#7cecff] to-[#ffccf2] flex items-center justify-center relative overflow-hidden">
       {/* Cute character background */}
@@ -31,7 +31,7 @@ const TitleScreen = ({changePage}) => {
         {/* Heart-shaped button */}
         <button
           className="w-32 h-32 relative focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-75 transform hover:scale-105 transition-all duration-300"
-          onClick={() => changePage("select")}
+          onClick={() => {changePage("select");insertBattleData();}}
         >
           
             <text
