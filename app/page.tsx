@@ -7,7 +7,7 @@ import Battle from "./_screen/battle";
 import Result from "./_screen/result";
 import "./_styles/common.css";
 
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 
 import { useState, useEffect } from "react";
 
@@ -67,13 +67,19 @@ const Home = () => {
       player2Name: 'player2' ,
     }]).select();
     setBattleId(data[0].id+1)
+    if(error){
+      console.log(error)
+    }
   }
 
   const getBattleData = async() => {
     const storage = Supabase.from("Battle");
-    let { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
+    const { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
     if(data[0]?.player1Count >= 0 && data[0]?.player2Count >= 0){
       setPoint([data[0].player1Count, data[0].player2Count]);
+    }
+    if(error){
+      console.log(error)
     }
   }
 
