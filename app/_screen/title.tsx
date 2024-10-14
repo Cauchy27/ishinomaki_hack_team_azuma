@@ -35,7 +35,7 @@ const TitleScreen = ({changePage, insertBattleData}) => {
         <label className="text-2xl text-pink-500 " style={{ fontFamily: 'marshmallowpopheart' }}>
           かわいいでたたかえ！<br/>
           くばられたてふだで「かわいい」をせつめいしよう！<br/>
-          いちばん「きゅん」をあつめたひとがかち<br/><br/>
+          いちばん「きゅん」をあつめたひとがゆうしょう！！<br/><br/>
           しんさいんさんは、QRこーどをよみこんでね♪
         </label>
       </div>
