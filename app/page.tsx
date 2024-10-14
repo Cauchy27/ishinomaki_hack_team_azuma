@@ -72,6 +72,7 @@ const Home = () => {
     }
   }
 
+  
   const getBattleData = async() => {
     const storage = Supabase.from("Battle");
     const { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
