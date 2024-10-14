@@ -1,22 +1,13 @@
-"use client"
-
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Heart, Award, Star, Sparkles } from 'lucide-react';
 
-import { soundPlay } from '../_component/soundPlay';
-
-const SoundEffect = "/sound/result1.mp3";
-const Bgm = "/sound/result2.mp3";
-
 interface CuteResultScreenProps {
-  score1: number,
-  score2: number,
-  name1: string,
-  name2: string,
-  message: string,
-  goTitle: () => void,
-  // battleId:number,
+  score1: number;
+  score2: number;
+  name1: string;
+  name2: string;
+  message: string;
+  goTitle: () => void;
 }
 
 const Result: React.FC<CuteResultScreenProps> = ({ 
@@ -25,17 +16,17 @@ const Result: React.FC<CuteResultScreenProps> = ({
   name1, 
   name2, 
   message, 
-  goTitle ,
-  // battleId
+  goTitle 
 }) => {
   const winner = score1 > score2 ? name1 : score2 > score1 ? name2 : "引き分け";
 
-  let test = true;
-  useEffect(()=>{
-    soundPlay(SoundEffect, 0.3);
-    soundPlay(Bgm, 0.01);
-    console.log("play");
-  },[])
+  useEffect(() => {
+    // クライアントサイドでのみ音声を再生
+    if (typeof window !== 'undefined') {
+      const audio = new Audio('/sound/result1.mp3');
+      audio.play().catch(error => console.error('Audio playback failed', error));
+    }
+  }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen w-full bg-gradient-to-r from-rose-100 via-pink-100 to-sky-100 p-4 animate-gradient-x">
@@ -43,7 +34,7 @@ const Result: React.FC<CuteResultScreenProps> = ({
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-100 via-pink-100 to-yellow-100 opacity-50 z-0"></div>
         <div className="relative z-10">
           <h1 className="text-4xl font-bold mb-6 text-rose-400 animate-bounce">
-            たいせんけっか！
+            対戦結果！
             <Sparkles className="inline-block ml-2 text-amber-300" />
           </h1>
           
@@ -53,7 +44,7 @@ const Result: React.FC<CuteResultScreenProps> = ({
           </div>
 
           <p className="text-2xl mb-6 text-pink-400 font-bold">
-            {winner === "ひきわけ" ? "ひきわけ！" : `${winner}のかち`}
+            {winner === "引き分け" ? "引き分け！" : `${winner}の勝ち`}
             <Heart className="inline-block ml-2 text-rose-400 animate-pulse" />
           </p>
 
@@ -88,4 +79,4 @@ const PlayerResult: React.FC<{ name: string; score: number }> = ({ name, score }
   </div>
 );
 
-export default Result
+export default Result;

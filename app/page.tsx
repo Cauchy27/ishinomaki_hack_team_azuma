@@ -15,7 +15,7 @@ import { Supabase } from "./_component/supabase";
 
 const pageTargetList = ["title", "select", "confirm", "battle", "result"];
 
-const testPlayersData = ["イノウエ","ミコト"]
+// const testPlayersData = ["イノウエ","ミコト"]
 
 const Home = () => {
 
@@ -33,6 +33,7 @@ const Home = () => {
   
   const goResult = () => {
     // 結果取得
+    getBattleData();
 
     // 画面切り替え
     setResultIs(true);
@@ -60,22 +61,18 @@ const Home = () => {
   const insertBattleData = async() => {
     const storage = Supabase.from("Battle");
     const { data, error } = await storage.select("id").order("id",{ascending:false});
-    const { data2, error2 } = await storage.insert([ { 
+    await storage.insert([ { 
       id:data[0].id+1,
       player1Name: 'player1', 
       player2Name: 'player2' ,
-    }]).select("id");
-    if(error2){
-      console.log(error2);
-      return 
-    }
+    }]).select();
     setBattleId(data[0].id+1)
   }
 
   const getBattleData = async() => {
     const storage = Supabase.from("Battle");
     let { data, error } = await storage.select("player1Count, player2Count").eq("id",battleId);
-    if(data[0]?.player1Count && data[0]?.player2Count){
+    if(data[0]?.player1Count >= 0 && data[0]?.player2Count >= 0){
       setPoint([data[0].player1Count, data[0].player2Count]);
     }
   }
