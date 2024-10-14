@@ -16,7 +16,7 @@ interface CuteResultScreenProps {
   battleId:number
 }
 
-const countStart=5; //タイマーの開始時刻
+const countStart=120; //タイマーの開始時刻
 
 const Battle = ({
   player1,
